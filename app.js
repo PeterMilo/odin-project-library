@@ -1,6 +1,7 @@
 
 const addBookButton = document.querySelector('.add-book');
-const bookList = document.querySelector('.book-list')
+const submitButton = document.querySelector('#submit-button');
+const bookList = document.querySelector('.book-list');
 
 let myLibrary = [];
 
@@ -20,16 +21,21 @@ function addBookToLibrary () {
 
 // When new book has been added to library, the library is updated in the HTML
 function updateLibraryDisplay () {
-        // Clear the existing content of the book list
-        bookList.innerHTML = '';
-    
-        // Loop through the myLibrary array, create list items for each book and set content to book information
-        myLibrary.forEach((book) => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `${book.title} by ${book.author}, ${book.pages} pages`;
-            bookList.appendChild(listItem);
-        });
+    // Clear html list
+    bookList.innerHTML = ''
+    // Loop through the array
+    myLibrary.forEach((book) => {
+        // Create a list element for each book 
+        const addBook = document.createElement('li');
+        // Add content to the list item
+        addBook.textContent = `${book.title} written by ${book.author} has ${book.pages} pages`
+        // Add the list item to our html list
+        bookList.appendChild(addBook);
+    })
 }
 
 
 addBookButton.addEventListener('click', addBookToLibrary)
+submitButton.addEventListener('click', function(event) {
+    event.preventDefault();
+})
