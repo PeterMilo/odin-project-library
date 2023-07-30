@@ -33,16 +33,34 @@ function addBookToLibrary() {
   updateLibraryDisplay();
 }
 
+// When called, removes a <li> using splice, using the index number from the library forEach function 
+function removeBookFromLibrary(index){
+    myLibrary.splice(index, 1); 
+    updateLibraryDisplay();
+}
+
 // When new book has been added to library, the library is updated in the HTML
 function updateLibraryDisplay() {
   // Clear html list
   bookList.innerHTML = '';
 
   // Loop through the array
-  myLibrary.forEach(book => {
+  myLibrary.forEach((book, index) => {
     // Create a list element for each book and adds the content
     const addBook = document.createElement('li');
     addBook.textContent = `${book.title} written by ${book.author} has ${book.pages} pages`;
+
+    // Create delete button
+    const removeButton = document.createElement('button'); 
+    removeButton.textContent = 'Delete';
+
+    // Event listener to delete item, passing on the index number
+    removeButton.addEventListener('click', () => {
+        removeBookFromLibrary(index);
+    });
+
+    // Place the button inside the book <li> element
+    addBook.appendChild(removeButton);
 
     // Add the list item to our html list
     bookList.appendChild(addBook);
