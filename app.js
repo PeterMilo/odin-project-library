@@ -46,19 +46,33 @@ function updateLibraryDisplay() {
 
   // Loop through the array
   myLibrary.forEach((book, index) => {
+
+    // LIST ELEMENT
     // Create a list element for each book and adds the content
     const addBook = document.createElement('li');
     addBook.textContent = `${book.title} written by ${book.author} has ${book.pages} pages`;
 
+    // READ TOGGLE SWITCH !! ELEMENT GETS CREATED, NOW ADD EVENT LISTENER
+    const switchLabel = document.createElement('label');
+    switchLabel.className = 'switch';
+    const switchInput = document.createElement('input');
+    switchInput.type = 'checkbox';
+    switchInput.classList.add('toggleSwitch');
+    const switchSpan = document.createElement('span');
+    switchSpan.classList.add('slider', 'round')
+
+    switchLabel.appendChild(switchInput);
+    switchLabel.appendChild(switchSpan);
+    addBook.appendChild(switchLabel);
+
+    // DELETE BUTTON
     // Create delete button
     const removeButton = document.createElement('button'); 
     removeButton.textContent = 'Delete';
-
     // Event listener to delete item, passing on the index number
     removeButton.addEventListener('click', () => {
         removeBookFromLibrary(index);
     });
-
     // Place the button inside the book <li> element
     addBook.appendChild(removeButton);
 
