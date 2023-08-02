@@ -24,7 +24,7 @@ function Book(author, title, pages, read) {
 
 // Creates a new book object using the form variables
 function addBookToLibrary() {
-  const newBook2 = new Book('Tolkien', 'The Hobbit', 324);
+  // const newBook2 = new Book('Tolkien', 'The Hobbit', 324);
   const newBook = new Book(
     `${bookFormAuthor.value}`,
     `${bookFormTitle.value}`,
@@ -32,7 +32,7 @@ function addBookToLibrary() {
     `${bookFormRead.value}`
   );
   myLibrary.push(newBook);
-  myLibrary.push(newBook2);
+  // myLibrary.push(newBook2);
   updateLibraryDisplay();
 }
 
@@ -44,8 +44,6 @@ function removeBookFromLibrary(index){
 
 function makeToggleSwitch () {
   const toggleSwitch = document.querySelector('.toggle-switch')
-
-  if ()
 
   toggleSwitch.addEventListener('change', (event) => {
     if (event.target.checked) {
@@ -77,6 +75,12 @@ myLibrary.forEach((book, index) => {
     switchInput.classList.add('toggle-switch');
     const switchSpan = document.createElement('span');
     switchSpan.classList.add('slider', 'round')
+
+    if(bookFormRead.value == 'read') {
+      switchInput.checked = true;
+    } else {
+      switchInput.checked = false;
+    }
 
     switchLabel.appendChild(switchInput);
     switchLabel.appendChild(switchSpan);
