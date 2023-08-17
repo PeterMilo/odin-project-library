@@ -45,6 +45,17 @@ function removeBookFromLibrary(index){
 
 function makeToggleSwitch (index) {
   console.log(`Button with id ${index} was clicked.`)
+
+
+  // DOES NOT WORK BECAUSE OF SCOPE
+  // if(this.switchInput.checked = true) {
+  //   book.read == 'Read'
+  // } else {
+  //   book.read == 'Not read'
+  // }
+
+
+ // NEED TO TEST
   // toggleSwitch.addEventListener('change', (event) => {
   //   if (event.target.checked) {
   //     console.log('Switch is checked');
@@ -65,9 +76,17 @@ myLibrary.forEach((book, index) => {
     // LIST ELEMENT
     // Create a list element for each book and adds the content
     const addBook = document.createElement('li');
-    addBook.textContent = `${book.title} written by ${book.author} has ${book.pages} pages. Have ${book.read}`;
+    const addBookBody = document.createElement('p');
+    const addBookStatus = document.createElement('p');
+    addBookBody.textContent = `${book.title} written by ${book.author} has ${book.pages} pages.`;
+    addBookStatus.textContent = `${book.read}`;
+    
+    addBook.appendChild(addBookBody)
+    addBook.appendChild(addBookStatus)
+    // addBook.firstChild = document.createElement('p')
+    // addBook.textContent = `${book.title} written by ${book.author} has ${book.pages} pages. ${book.read}`;
 
-    // READ TOGGLE SWITCH !! ELEMENT GETS CREATED, NOW ADD EVENT LISTENER
+    // CREATE & READ TOGGLE SWITCH
     const switchLabel = document.createElement('label');
     switchLabel.className = 'switch';
     const switchInput = document.createElement('input');
@@ -76,7 +95,7 @@ myLibrary.forEach((book, index) => {
     const switchSpan = document.createElement('span');
     switchSpan.classList.add('slider', 'round')
 
-    if(book.read == 'read') {
+    if(book.read == 'Read') {
       switchInput.checked = true;
     } else {
       switchInput.checked = false;
