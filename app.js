@@ -43,36 +43,29 @@ function removeBookFromLibrary(index){
     updateLibraryDisplay();
 }
 
-function makeToggleSwitch (index) {
+function updateReadStatus (index, newStatus) {
   console.log(`Button with id ${index} was clicked.`)
+  console.log(typeof(index))
+  const listItem = document.querySelector(`li[data-index="${index}"]`);
 
+  if (listItem) {
+    const statusElement = listItem.querySelector('.book-status');
+    statusElement.textContent = newStatus;
+  }
 
-  // DOES NOT WORK BECAUSE OF SCOPE
-  // if(this.switchInput.checked = true) {
-  //   book.read == 'Read'
-  // } else {
-  //   book.read == 'Not read'
-  // }
+  // UPDATE MY LIBRARY[index].read HERE (SOMEHOW)
 
-
- // NEED TO TEST
-  // toggleSwitch.addEventListener('change', (event) => {
-  //   if (event.target.checked) {
-  //     console.log('Switch is checked');
-  //   } else {
-  //     console.log('Switch is unchecked');
-  //   }
-  // });
 }
 
 // When new book has been added to library, the library is updated in the HTML
 function updateLibraryDisplay() {
   // Clear html list
   bookList.innerHTML = '';
-
-// Loop through the array
-myLibrary.forEach((book, index) => {
-
+  
+  // Loop through the array
+  myLibrary.forEach((book, index) => {
+    book.id = index+1;
+    
     // LIST ELEMENT
     // Create a list element for each book and adds the content
     const addBook = document.createElement('li');
@@ -80,11 +73,12 @@ myLibrary.forEach((book, index) => {
     const addBookStatus = document.createElement('p');
     addBookBody.textContent = `${book.title} written by ${book.author} has ${book.pages} pages.`;
     addBookStatus.textContent = `${book.read}`;
+    addBookStatus.classList.add('book-status');
     
     addBook.appendChild(addBookBody)
     addBook.appendChild(addBookStatus)
-    // addBook.firstChild = document.createElement('p')
-    // addBook.textContent = `${book.title} written by ${book.author} has ${book.pages} pages. ${book.read}`;
+    addBook.setAttribute('data-index', book.id)
+   
 
     // CREATE & READ TOGGLE SWITCH
     const switchLabel = document.createElement('label');
@@ -101,7 +95,6 @@ myLibrary.forEach((book, index) => {
       switchInput.checked = false;
     }
 
-    book.id = index+1;
 
     switchLabel.appendChild(switchInput);
     switchLabel.appendChild(switchSpan);
@@ -119,7 +112,11 @@ myLibrary.forEach((book, index) => {
 
 
     switchInput.addEventListener('click', () => {
-      makeToggleSwitch(book.id);
+      if(switchInput.checked) {
+        updateReadStatus(book.id, 'Read')
+      } else {
+        updateReadStatus(book.id, 'Not Read')
+      }
     })
 
 
