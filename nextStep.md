@@ -1,3 +1,3 @@
 NEXT STEP IN APP
 
-Read status on the book when read status is toggle has to get updated. 
+Functionality seems to work. Time for styling

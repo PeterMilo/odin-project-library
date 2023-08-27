@@ -25,7 +25,6 @@ function Book(author, title, pages, read, id) {
 
 // Creates a new book object using the form variables
 function addBookToLibrary() {
-  // const newBook2 = new Book('Tolkien', 'The Hobbit', 324);
   const newBook = new Book(
     `${bookFormAuthor.value}`,
     `${bookFormTitle.value}`,
@@ -43,9 +42,10 @@ function removeBookFromLibrary(index){
     updateLibraryDisplay();
 }
 
+// 
 function updateReadStatus (index, newStatus) {
   console.log(`Button with id ${index} was clicked.`)
-  console.log(typeof(index))
+  
   const listItem = document.querySelector(`li[data-index="${index}"]`);
 
   if (listItem) {
@@ -53,7 +53,7 @@ function updateReadStatus (index, newStatus) {
     statusElement.textContent = newStatus;
   }
 
-  // UPDATE MY LIBRARY[index].read HERE (SOMEHOW)
+  myLibrary[index-1].read = newStatus;
 
 }
 
@@ -115,20 +115,13 @@ function updateLibraryDisplay() {
       if(switchInput.checked) {
         updateReadStatus(book.id, 'Read')
       } else {
-        updateReadStatus(book.id, 'Not Read')
+        updateReadStatus(book.id, 'Not read')
       }
     })
 
-
-
-
     // Add the list item to our html list
     bookList.appendChild(addBook);
-
-
   });
-
-
 }
 
 // Display form when Add book button is clicked
