@@ -1,5 +1,27 @@
+
+
 li {
   list-style: none;
+}
+h1{
+  margin:0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-right {
+display: flex;
+margin: 1em 1em 1em 0;
+}
+.flex-right button {
+  margin: .5em;
+}
+
+.flex-left {
+display: flex;
+margin: 1em 0 1em 1em;
 }
 
 #book-form {

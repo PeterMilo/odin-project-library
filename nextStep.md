@@ -1,3 +1,3 @@
 NEXT STEP IN APP
 
-Functionality seems to work. Time for styling
+Rewrite the Book JS to structure new book properly for css
