@@ -91,3 +91,21 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.book-list {
+  display: grid;
+  grid: repeat(3, 1fr) / repeat(3, 1fr)
+
+}
+
+.book-item {
+  background-color: #eaeaea;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.delete-button {
+  display: block;
+  margin: 1rem 0 1rem 0;
+}

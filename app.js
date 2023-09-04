@@ -42,7 +42,7 @@ function removeBookFromLibrary(index){
     updateLibraryDisplay();
 }
 
-// 
+// Updates the read status text for book when clicking the switch button
 function updateReadStatus (index, newStatus) {
   console.log(`Button with id ${index} was clicked.`)
   
@@ -69,14 +69,27 @@ function updateLibraryDisplay() {
     // LIST ELEMENT
     // Create a list element for each book and adds the content
     const addBook = document.createElement('li');
-    const addBookBody = document.createElement('p');
+    const addBookTitle = document.createElement('p');
+    const addBookAuthor = document.createElement('p');
+    const addBookPages = document.createElement('p');
     const addBookStatus = document.createElement('p');
-    addBookBody.textContent = `${book.title} written by ${book.author} has ${book.pages} pages.`;
+
+    addBookTitle.textContent = `${book.title}`;
+    addBookAuthor.textContent = `by ${book.author}`;
+    addBookPages.textContent = `Pages: ${book.pages}`;
     addBookStatus.textContent = `${book.read}`;
+
+    addBook.classList.add('book-item')
+    addBookTitle.classList.add('book-title');
+    addBookAuthor.classList.add('book-author');
+    addBookPages.classList.add('book-pages');
     addBookStatus.classList.add('book-status');
-    
-    addBook.appendChild(addBookBody)
+
+    addBook.appendChild(addBookTitle);
+    addBook.appendChild(addBookAuthor);
+    addBook.appendChild(addBookPages);
     addBook.appendChild(addBookStatus)
+
     addBook.setAttribute('data-index', book.id)
    
 
@@ -105,6 +118,7 @@ function updateLibraryDisplay() {
     // Create delete button and pass on the index number
     const removeButton = document.createElement('button'); 
     removeButton.textContent = 'Delete';
+    removeButton.classList.add('delete-button')
     removeButton.addEventListener('click', () => {
         removeBookFromLibrary(index);
     });
