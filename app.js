@@ -30,9 +30,11 @@ function addBookToLibrary() {
     `${bookFormTitle.value}`,
     `${bookFormPages.value}`,
     `${bookFormRead.value}`,
+
   );
+  const randomNumber = Math.random()*10000;
+  localStorage.setItem(`book${Math.round(randomNumber)}`, JSON.stringify(newBook));
   myLibrary.push(newBook);
-  // myLibrary.push(newBook2);
   updateLibraryDisplay();
 }
 
